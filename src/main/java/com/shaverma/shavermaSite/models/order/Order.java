@@ -4,11 +4,14 @@ import com.shaverma.shavermaSite.models.baseModel.BaseModel;
 import com.shaverma.shavermaSite.models.delivery.Delivery;
 import com.shaverma.shavermaSite.models.product.Product;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
-@Getter @Setter
+@Getter @Setter @NoArgsConstructor
 public class Order extends BaseModel {
     private Map<Product,Integer> basket;
     private double sum;

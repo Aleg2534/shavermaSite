@@ -1,11 +1,9 @@
 package com.shaverma.shavermaSite.models.delivery;
 
 import com.shaverma.shavermaSite.models.baseModel.BaseModel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter
+@Getter @Setter @NoArgsConstructor @ToString
 public class Delivery extends BaseModel {
     private String address;
     private double price;

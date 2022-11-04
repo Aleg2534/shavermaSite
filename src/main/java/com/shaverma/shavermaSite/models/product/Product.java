@@ -2,10 +2,11 @@ package com.shaverma.shavermaSite.models.product;
 
 import com.shaverma.shavermaSite.models.baseModel.BaseModel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter @Setter @NoArgsConstructor
 public class Product extends BaseModel {
     private String productName;
     private double price;

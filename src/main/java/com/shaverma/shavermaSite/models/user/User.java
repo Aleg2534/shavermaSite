@@ -3,14 +3,11 @@ package com.shaverma.shavermaSite.models.user;
 import com.shaverma.shavermaSite.models.baseModel.BaseModel;
 import com.shaverma.shavermaSite.models.enums.Roles;
 import com.shaverma.shavermaSite.models.order.Order;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
-@Getter @Setter
+@Getter @Setter @NoArgsConstructor
 public class User extends BaseModel {
     private String login;
     private String password;

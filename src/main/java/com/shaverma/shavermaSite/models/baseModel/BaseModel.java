@@ -1,10 +1,9 @@
 package com.shaverma.shavermaSite.models.baseModel;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
-@Data
+@Getter
+@NoArgsConstructor @AllArgsConstructor
 public class BaseModel {
     @NonNull
     protected int classId;

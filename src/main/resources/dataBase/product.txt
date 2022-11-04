@@ -1,0 +1,10 @@
+{"classId":0,"productName":"sadas","price":0.0}
+{"classId":1,"productName":"sadas","price":123.0}
+{"classId":2,"productName":"sadas","price":246.0}
+{"classId":3,"productName":"sadas","price":369.0}
+{"classId":4,"productName":"sadas","price":492.0}
+{"classId":5,"productName":"sadas","price":615.0}
+{"classId":6,"productName":"sadas","price":738.0}
+{"classId":7,"productName":"sadas","price":861.0}
+{"classId":8,"productName":"sadas","price":984.0}
+{"classId":9,"productName":"sadas","price":1107.0}
