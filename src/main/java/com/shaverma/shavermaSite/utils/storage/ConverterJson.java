@@ -56,7 +56,7 @@ public class ConverterJson {
         return null;
     }
 
-    public static <T> void writeJson(HashMap<Integer, T> models) throws IOException {
+    public static <T> void writeJson(Map<Integer, T> models) throws IOException {
         String path;
         if (models.get(models.keySet().toArray()[0]).getClass() == Delivery.class) {
             path = "src/main/resources/dataBase/delivery.txt";
