@@ -6,6 +6,7 @@ import com.shaverma.shavermaSite.models.delivery.Delivery;
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
+import com.shaverma.shavermaSite.utils.Consts;
 
 import java.io.*;
 import java.util.HashMap;
@@ -14,9 +15,9 @@ import java.util.Map;
 public class ConverterJson {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static Object readJson(String path) throws IOException {
+    public static Map<Integer,? > readJson(String path) throws IOException {
         switch (path) {
-            case ("src/main/resources/dataBase/delivery.txt") -> {
+            case (Consts.DELIVERY_PATH) -> {
                 BufferedReader fileReader = new BufferedReader(new FileReader("src/main/resources/dataBase/delivery.txt"));
                 Map<Integer, Delivery> deliveryMap = new HashMap<>();
                 while (fileReader.ready()) {
@@ -25,7 +26,7 @@ public class ConverterJson {
                 }
                 return deliveryMap;
             }
-            case ("src/main/resources/dataBase/product.txt") -> {
+            case (Consts.PRODUCT_PATH) -> {
                 BufferedReader fileReader = new BufferedReader(new FileReader("src/main/resources/dataBase/product.txt"));
                 Map<Integer, Product> productMap = new HashMap<>();
                 while (fileReader.ready()) {
@@ -34,7 +35,7 @@ public class ConverterJson {
                 }
                 return productMap;
             }
-            case ("src/main/resources/dataBase/order.txt") -> {
+            case (Consts.ORDER_PATH) -> {
                 BufferedReader fileReader = new BufferedReader(new FileReader("src/main/resources/dataBase/order.txt"));
                 Map<Integer, Order> orderMap = new HashMap<>();
                 while (fileReader.ready()) {
@@ -43,7 +44,7 @@ public class ConverterJson {
                 }
                 return orderMap;
             }
-            case ("src/main/resources/dataBase/user.txt") -> {
+            case (Consts.USER_PATH) -> {
                 BufferedReader fileReader = new BufferedReader(new FileReader("src/main/resources/dataBase/user.txt"));
                 Map<Integer, User> userMap = new HashMap<>();
                 while (fileReader.ready()) {
