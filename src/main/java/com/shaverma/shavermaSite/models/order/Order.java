@@ -28,7 +28,7 @@ public class Order extends BaseModel {
         this.delivery = delivery;
     }
 
-    @JsonAnyGetter
+//    @JsonAnyGetter
     public Basket getBasket() {
         return basket;
     }

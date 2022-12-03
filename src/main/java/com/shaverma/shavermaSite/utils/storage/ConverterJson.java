@@ -6,7 +6,6 @@ import com.shaverma.shavermaSite.models.delivery.Delivery;
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
-import com.shaverma.shavermaSite.utils.Consts;
 
 import java.io.*;
 import java.util.HashMap;
@@ -62,8 +61,10 @@ public class ConverterJson {
         if (models.get(models.keySet().toArray()[0]).getClass() == Delivery.class) {
             path = "src/main/resources/dataBase/delivery.txt";
         } else if (models.get(models.keySet().toArray()[0]).getClass() == Product.class) {
+//            path = "src/main/resources/dataBase/e1123.txt";
             path = "src/main/resources/dataBase/product.txt";
         } else if (models.get(models.keySet().toArray()[0]).getClass() == Order.class) {
+//            path = "src/main/resources/dataBase/e1123.txt";
             path = "src/main/resources/dataBase/order.txt";
         } else {
             path = "src/main/resources/dataBase/user.txt";
@@ -75,6 +76,7 @@ public class ConverterJson {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println(models.toString());
         }
     }
 }

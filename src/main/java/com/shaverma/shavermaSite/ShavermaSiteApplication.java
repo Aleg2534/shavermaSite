@@ -2,8 +2,12 @@ package com.shaverma.shavermaSite;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shaverma.shavermaSite.models.delivery.Delivery;
+import com.shaverma.shavermaSite.models.enums.Roles;
+import com.shaverma.shavermaSite.models.order.Basket;
+import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
+import com.shaverma.shavermaSite.utils.storage.Consts;
 import com.shaverma.shavermaSite.utils.storage.ConverterJson;
 import com.shaverma.shavermaSite.utils.storage.Storage;
 import org.springframework.boot.SpringApplication;
@@ -22,10 +26,21 @@ public class ShavermaSiteApplication {
 
     public static void main(String[] args) throws IOException {
 
-//		SpringApplication.run(ShavermaSiteApplication.class, args);
-//        ApplicationContext context =
-//                new AnnotationConfigApplicationContext("com.shaverma.shavermaSite");
-//        Storage storage = context.getBean(Storage.class);
-//
+        SpringApplication.run(ShavermaSiteApplication.class, args);
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.shaverma.shavermaSite");
+        Storage storage = context.getBean(Storage.class);
+        Map<Integer,Order> orderMap = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            Basket basket = new Basket(new HashMap<>());
+            for (int j = 0; j < 3; j++) {
+                basket.getBasket().put(i,(2-i%2)*3);
+            }
+            storage.setOrder(new Order(i,basket,123124123.312,storage.getDelivery(i)));
+            orderMap.put(i,new Order(i,basket,123124123.312,storage.getDelivery(i)));
+            storage.setUser(new User(i,"pup"+i,"abcdf","asadwq@amklsmd",storage.getOrder(i),null, Roles.BASE_USER));
+        }
+//        ConverterJson.writeJson(orderMap);
+        int i=0;
     }
 }
