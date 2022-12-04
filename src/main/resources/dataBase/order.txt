@@ -1,0 +1,10 @@
+{"classId":0,"basket":{"basket":{"0":6}},"sum":1.23124123312E8,"delivery":{"classId":0,"address":"sadas","price":0.0,"sum":0.0}}
+{"classId":1,"basket":{"basket":{"1":3}},"sum":1.23124123312E8,"delivery":{"classId":1,"address":"sadas","price":123.0,"sum":3.1928480204342275E-4}}
+{"classId":2,"basket":{"basket":{"2":6}},"sum":1.23124123312E8,"delivery":{"classId":2,"address":"sadas","price":246.0,"sum":6.385696040868455E-4}}
+{"classId":3,"basket":{"basket":{"3":3}},"sum":1.23124123312E8,"delivery":{"classId":3,"address":"sadas","price":369.0,"sum":9.578544061302681E-4}}
+{"classId":4,"basket":{"basket":{"4":6}},"sum":1.23124123312E8,"delivery":{"classId":4,"address":"sadas","price":492.0,"sum":0.001277139208173691}}
+{"classId":5,"basket":{"basket":{"5":3}},"sum":1.23124123312E8,"delivery":{"classId":5,"address":"sadas","price":615.0,"sum":0.0015964240102171138}}
+{"classId":6,"basket":{"basket":{"6":6}},"sum":1.23124123312E8,"delivery":{"classId":6,"address":"sadas","price":738.0,"sum":0.0019157088122605363}}
+{"classId":7,"basket":{"basket":{"7":3}},"sum":1.23124123312E8,"delivery":{"classId":7,"address":"sadas","price":861.0,"sum":0.002234993614303959}}
+{"classId":8,"basket":{"basket":{"8":6}},"sum":1.23124123312E8,"delivery":{"classId":8,"address":"sadas","price":984.0,"sum":0.002554278416347382}}
+{"classId":9,"basket":{"basket":{"9":3}},"sum":1.23124123312E8,"delivery":{"classId":9,"address":"sadas","price":1107.0,"sum":0.0028735632183908046}}

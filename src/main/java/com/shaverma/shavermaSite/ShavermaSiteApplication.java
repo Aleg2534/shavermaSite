@@ -26,21 +26,24 @@ public class ShavermaSiteApplication {
 
     public static void main(String[] args) throws IOException {
 
-        SpringApplication.run(ShavermaSiteApplication.class, args);
-        ApplicationContext context =
-                new AnnotationConfigApplicationContext("com.shaverma.shavermaSite");
-        Storage storage = context.getBean(Storage.class);
-        Map<Integer,Order> orderMap = new HashMap<>();
-        for (int i = 0; i < 10; i++) {
-            Basket basket = new Basket(new HashMap<>());
-            for (int j = 0; j < 3; j++) {
-                basket.getBasket().put(i,(2-i%2)*3);
-            }
-            storage.setOrder(new Order(i,basket,123124123.312,storage.getDelivery(i)));
-            orderMap.put(i,new Order(i,basket,123124123.312,storage.getDelivery(i)));
-            storage.setUser(new User(i,"pup"+i,"abcdf","asadwq@amklsmd",storage.getOrder(i),null, Roles.BASE_USER));
-        }
+//        SpringApplication.run(ShavermaSiteApplication.class, args);
+//        ApplicationContext context =
+//                new AnnotationConfigApplicationContext("com.shaverma.shavermaSite");
+//        Storage storage = context.getBean(Storage.class);
+//        Map<Integer,Order> orderMap = new HashMap<>();
+//        Map<Integer, User> userMap = new HashMap<>();
+//        for (int i = 0; i < 10; i++) {
+//            Basket basket = new Basket(new HashMap<>());
+//            for (int j = 0; j < 3; j++) {
+//                basket.getBasket().put(i,(2-i%2)*3);
+//            }
+//            storage.setOrder(new Order(i,basket,123124123.312,storage.getDelivery(i)));
+//            orderMap.put(i,new Order(i,basket,123124123.312,storage.getDelivery(i)));
+//            userMap.put(i,new User(i,"pup"+i,"abcdf","asadwq@amklsmd",storage.getOrder(i),null, Roles.BASE_USER));
+//            storage.setUser(new User(i,"pup"+i,"abcdf","asadwq@amklsmd",storage.getOrder(i),null, Roles.BASE_USER));
+//        }
 //        ConverterJson.writeJson(orderMap);
+//        ConverterJson.writeJson(userMap);
         int i=0;
     }
 }
