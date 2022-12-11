@@ -1,21 +1,15 @@
 package com.shaverma.shavermaSite.models.order;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.shaverma.shavermaSite.models.baseModel.BaseModel;
 import com.shaverma.shavermaSite.models.delivery.Delivery;
-import com.shaverma.shavermaSite.models.product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
-import java.util.Map;
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Order extends BaseModel {
     private Basket basket;
     private double sum;
@@ -28,7 +22,7 @@ public class Order extends BaseModel {
         this.delivery = delivery;
     }
 
-//    @JsonAnyGetter
+    //    @JsonAnyGetter
     public Basket getBasket() {
         return basket;
     }

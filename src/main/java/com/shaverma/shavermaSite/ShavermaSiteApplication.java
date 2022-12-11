@@ -7,6 +7,7 @@ import com.shaverma.shavermaSite.models.order.Basket;
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
+import com.shaverma.shavermaSite.utils.storage.AnnotationConfig;
 import com.shaverma.shavermaSite.utils.storage.Consts;
 import com.shaverma.shavermaSite.utils.storage.ConverterJson;
 import com.shaverma.shavermaSite.utils.storage.Storage;
@@ -21,15 +22,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class ShavermaSiteApplication {
 
     public static void main(String[] args) throws IOException {
 
 //        SpringApplication.run(ShavermaSiteApplication.class, args);
-//        ApplicationContext context =
-//                new AnnotationConfigApplicationContext("com.shaverma.shavermaSite");
-//        Storage storage = context.getBean(Storage.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext();
+        context.register(AnnotationConfig.class);
+        context.refresh();
+        Storage storage = context.getBean(Storage.class);
 //        Map<Integer,Order> orderMap = new HashMap<>();
 //        Map<Integer, User> userMap = new HashMap<>();
 //        for (int i = 0; i < 10; i++) {
@@ -44,6 +47,10 @@ public class ShavermaSiteApplication {
 //        }
 //        ConverterJson.writeJson(orderMap);
 //        ConverterJson.writeJson(userMap);
+        User user = storage.getUser(9);
+        user.setRole(Roles.ADMIN);
+        storage.setUser(user);
+        context.close();
         int i=0;
     }
 }
