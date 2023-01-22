@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <span th:text="${error}"></span>
+    <form method="post" th:actoin="@{/Registration}">
+        <input name ="login" placeholder="enter your login">
+        <input name ="email" placeholder="enter your email">
+        <input name ="password" placeholder="enter your password">
+        <input type="password" name="repeat_password" placeholder=" repeat your password">
+        <input type="submit">
+    </form>
+    <a href="/gTA"> Authorization</a>
+</body>
+</html>

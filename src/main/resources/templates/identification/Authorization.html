@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Authorization</title>
+</head>
+<body>
+  <span th:text="${error}"></span>
+  <form method="post" th:action="@{/gTA}">
+    <input name="email" placeholder="enter your email">
+    <input type="password" name="password" placeholder="enter your password">
+    <input type="submit">
+  </form>
+  <a href="/Registration"> Registration </a>
+</body>
+</html>
