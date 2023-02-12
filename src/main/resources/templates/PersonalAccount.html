@@ -5,9 +5,18 @@
     <title>PersonalAccount</title>
 </head>
 <body>
+
 <form method="get" th:action="@{/Menu}">
-    <input type="submit">
-    <input type="text" name="userId" th:value="${userId}">
+    <input type="submit" value="Menu">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
+<form method="post" th:action="@{/PersonalAccount}">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <p><input name="login" th:placeholder="${login}"></p>
+    <p><input name="email" th:placeholder="${email}"></p>
+    <p><input name="password" th:placeholder="${password}"></p>
+    <p><input type="submit" value="Change private information"></p>
 </form>
 </body>
 </html>

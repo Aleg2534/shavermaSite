@@ -6,7 +6,6 @@ import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -14,26 +13,40 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @ComponentScan(basePackages = "java.util.HashMap")
 @Getter
 public class Storage {
-    private Map<Integer, Delivery> deliveryMap;
-    private Map<Integer, Order> orderMap;
-    private Map<Integer, Product> productMap;
-    private Map<Integer, User> userMap;
+    private static Map<Integer, Delivery> deliveryMap;
+    private static Map<Integer, Order> orderMap;
+    private static Map<Integer, Product> productMap;
+    private static Map<Integer, User> userMap;
+
+    public static Map<Integer, Delivery> getDeliveryMap() {
+        return deliveryMap;
+    }
+
+    public static Map<Integer, Order> getOrderMap() {
+        return orderMap;
+    }
+
+    public static Map<Integer, Product> getProductMap() {
+        return productMap;
+    }
+
+    public static Map<Integer, User> getUserMap() {
+        return userMap;
+    }
 
     @Autowired
     public Storage(Map<Integer, Delivery> deliveryMap, Map<Integer, Order> orderMap,
                    Map<Integer, Product> productMap, Map<Integer, User> userMap) {
-        this.deliveryMap = deliveryMap;
-        this.orderMap = orderMap;
-        this.productMap = productMap;
-        this.userMap = userMap;
+        Storage.deliveryMap = deliveryMap;
+        Storage.orderMap = orderMap;
+        Storage.productMap = productMap;
+        Storage.userMap = userMap;
     }
 
     @PostConstruct
@@ -80,7 +93,7 @@ public class Storage {
         return productMap.get(productId);
     }
 
-    public void setUser(User newUser) {
+    public void setUser(int i, User newUser) {
         userMap.put(newUser.getClassId(), newUser);
     }
 
@@ -89,14 +102,14 @@ public class Storage {
     }
 
     public boolean checkEmailUser(String email) {
-        return getUserMap().values().stream().anyMatch(user ->
+        return Storage.userMap.values().stream().anyMatch(user ->
                 user.getEmailAddress().equals(email));
     }
 
     public User checkLoginAndPasswordUser(String email, String password) {
 //        return getUserMap().values().stream().anyMatch(user ->
 //                user.getEmailAddress().equals(email) && user.getPassword().equals(password));
-        return getUserMap().values().stream().filter(user ->
+        return Storage.userMap.values().stream().filter(user ->
                 user.getEmailAddress().equals(email) && user.getPassword().equals(password)).findFirst().orElse(null);
     }
 

@@ -6,9 +6,23 @@
 </head>
 <body>
   <form method="get" th:action="@{/PersonalAccount}">
-    <input type="submit">
-    <input type="text" name="userId" th:value="${userId}">
+    <input type="submit" value="PersonalAccount">
+    <input type="hidden" name="userId" th:value="${userId}">
   </form>
+  <table>
+      <tr th:each="product : ${listProducts}">
 
+          <form method="post" th:action="@{/addProduct}">
+                <td>
+                <p th:text="${product.productName}">productName</p> <br>
+                    <input type="submit" value="add">
+                    <input type="submit" value="delete" th:formaction="@{/deleteProduct}">
+                    <input type="hidden" name="productId" th:value="${product.classId}">
+                    <input type="hidden" name="userId" th:value="${userId}">
+                  </td>
+                <td th:text="${product.price}"><p>price</p></td>
+          </form>
+      </tr>
+  </table>
 </body>
 </html>

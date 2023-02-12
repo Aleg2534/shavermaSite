@@ -31,7 +31,6 @@ public class AuthorizationController {
         User user =storage.checkLoginAndPasswordUser(email, password);
         if (user!=null) {
             int userId=user.getClassId();
-//            atrr.addFlashAttribute("userId",userId);
             return "redirect:/Menu?userId="+userId;
         }
 
