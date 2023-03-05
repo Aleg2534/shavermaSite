@@ -11,12 +11,11 @@
   </form>
   <table>
       <tr th:each="product : ${listProducts}">
-
-          <form method="post" th:action="@{/addProduct}">
+          <form method="post" th:action="@{/addProductMenu}">
                 <td>
                 <p th:text="${product.productName}">productName</p> <br>
                     <input type="submit" value="add">
-                    <input type="submit" value="delete" th:formaction="@{/deleteProduct}">
+<!--                    <input type="submit" value="delete" th:formaction="@{/deleteProductMenu}">-->
                     <input type="hidden" name="productId" th:value="${product.classId}">
                     <input type="hidden" name="userId" th:value="${userId}">
                   </td>
@@ -24,5 +23,11 @@
           </form>
       </tr>
   </table>
+
+<form method="get" th:action="@{/CurrentOrder}">
+    <input type="submit" value="Basket">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
 </body>
 </html>

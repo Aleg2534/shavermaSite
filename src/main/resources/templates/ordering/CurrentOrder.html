@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>CurrentOrder</title>
 </head>
 <body>
-  <p> o r d e r c u r r e n t</p>
+<table>
+    <tr th:each="product : ${listProducts}">
+        <form method="post" th:action="@{/addProductCurrentOrder}">
+            <td>
+                <p th:text="${product.productName}">productName</p> <br>
+                <input type="submit" value="add">
+                <input type="submit" value="delete" th:formaction="@{/deleteProductCurrentOrder}">
+                <input type="hidden" name="productId" th:value="${product.classId}">
+                <input type="hidden" name="userId" th:value="${userId}">
+            </td>
+            <td th:text="${product.price}"><p>price</p></td>
+            <td th:text="${basket.getBasket().get(product.classId)}"><p>count</p></td>
+            <td th:text="${basket.sumProduct(product.classId)}"><p>productSum</p></td>
+        </form>
+    </tr>
+</table>
+
+<p th:text="${basket.finalSum}">finalSum<p>
+
+<form method="get" th:action="@{/Menu}">
+    <input type="submit" value="Menu">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
 </body>
 </html>

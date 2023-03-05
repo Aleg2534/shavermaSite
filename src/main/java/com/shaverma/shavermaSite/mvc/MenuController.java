@@ -2,6 +2,7 @@ package com.shaverma.shavermaSite.mvc;
 
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.user.User;
+import com.shaverma.shavermaSite.utils.storage.ProductsLogic;
 import com.shaverma.shavermaSite.utils.storage.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,26 +23,28 @@ public class MenuController {
 
     @GetMapping("/Menu")
     public String getMenu(@RequestParam(name = "userId", required = false) String userId, Model model) {
-        System.out.println(storage.getProductMap().values().stream().toList().toString());
+//        System.out.println(storage.getProductMap().values().stream().toList().toString());
         model.addAttribute("listProducts", storage.getProductMap().values().stream().toList());
         model.addAttribute("userId", userId);
         return "Menu";
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/addProductMenu")
     public String addProduct(@RequestParam(name = "userId", required = false) String userId,
                              @RequestParam(name = "productId", required = false) String productId, Model model) {
-        System.out.println(userId);
-        System.out.println(productId);
-        User user = storage.getUser(Integer.parseInt(userId)).clone();
-        if (user.getCurrentOrder() == null) {
-            user.setCurrentOrder(new Order());
-        }
+//        System.out.println(userId);
+//        System.out.println(productId);
+        ProductsLogic.addProduct(userId, productId);
+        return getMenu(userId, model);
+    }
 
-        user.getCurrentOrder().getBasket().getBasket().put(Integer.parseInt(productId),
-                user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) == null ? 1 :
-                        user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) + 1);
-        storage.setUser(Integer.parseInt(userId),user);
-        return "Menu";
+    @PostMapping("/deleteProductMenu")
+    public String deleteProduct(@RequestParam(name = "userId", required = false) String userId,
+                                @RequestParam(name = "productId", required = false) String productId, Model model) {
+        if (storage.getUser(Integer.parseInt(userId)).getCurrentOrder() == null) {
+            return getMenu(userId, model);
+        }
+        ProductsLogic.deleteProduct(userId, productId);
+        return getMenu(userId, model);
     }
 }
