@@ -5,10 +5,12 @@
   <title>MeNu</title>
 </head>
 <body>
+
   <form method="get" th:action="@{/PersonalAccount}">
     <input type="submit" value="PersonalAccount">
     <input type="hidden" name="userId" th:value="${userId}">
   </form>
+
   <table>
       <tr th:each="product : ${listProducts}">
           <form method="post" th:action="@{/addProductMenu}">

@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @ComponentScan(basePackages = "java.util.HashMap")
@@ -113,11 +114,15 @@ public class Storage {
                 user.getEmailAddress().equals(email) && user.getPassword().equals(password)).findFirst().orElse(null);
     }
 
-    public void registrationUser(String login, String email, String password) {
-        int id = (userMap.keySet().stream().max(Integer::compare).isPresent() ?
-                userMap.keySet().stream().max(Integer::compare).get() : 0)
-                + 1;
-
-        userMap.put(id, new User(id, login, password, email, null, null, Roles.BASE_USER));
+    public Integer registrationUser(String login, String email, String password) {
+        int userId = newId(userMap);
+        userMap.put(userId, new User(userId, login, password, email, null, null, Roles.BASE_USER));
+        return userId;
     }
+
+    public static  <T> int newId(Map<Integer, T> objectMap) {
+        return (objectMap.keySet().size() > 0 ?
+                objectMap.keySet().stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax() : 0) + 1;
+    }
+
 }

@@ -1,10 +1,10 @@
 {"classId":0,"address":"sadas","price":0.0,"sum":0.0}
 {"classId":1,"address":"sadas","price":123.0,"sum":3.1928480204342275E-4}
-{"classId":2,"address":"sadas","price":246.0,"sum":6.385696040868455E-4}
-{"classId":3,"address":"sadas","price":369.0,"sum":9.578544061302681E-4}
+{"classId":2,"address":"pdkpasod","price":333.0,"sum":6396.0}
+{"classId":3,"address":"sadas","price":333.0,"sum":3321.0}
 {"classId":4,"address":"sadas","price":492.0,"sum":0.001277139208173691}
 {"classId":5,"address":"sadas","price":615.0,"sum":0.0015964240102171138}
 {"classId":6,"address":"sadas","price":738.0,"sum":0.0019157088122605363}
 {"classId":7,"address":"sadas","price":861.0,"sum":0.002234993614303959}
 {"classId":8,"address":"sadas","price":984.0,"sum":0.002554278416347382}
-{"classId":9,"address":"sadas","price":1107.0,"sum":0.0028735632183908046}
+{"classId":9,"address":"","price":333.0,"sum":861.0}

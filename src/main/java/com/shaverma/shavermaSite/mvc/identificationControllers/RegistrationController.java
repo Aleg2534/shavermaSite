@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class  RegistrationController {
+public class RegistrationController {
     Storage storage;
 
     @Autowired
@@ -33,13 +33,12 @@ public class  RegistrationController {
         if (!password.equals(repeatPassword)) {
             model.addAttribute("error", "password and repeatPassword don't equal");
             return "identification/Registration";
-        }
-        else if(storage.checkEmailUser(email))
-        {
+        } else if (storage.checkEmailUser(email)) {
             model.addAttribute("error", "user with this email already exists");
             return "identification/Registration";
         }
-        storage.registrationUser(login, email, password);
+        int userId = storage.registrationUser(login, email, password);
+        model.addAttribute("userId",userId);
         return "redirect:/Menu";
     }
 }

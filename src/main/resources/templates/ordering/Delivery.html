@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery</title>
+
+</head>
+<body>
+<form method="post" th:action="@{/changeAddress}">
+    <p type="text" th:text="${delivery.sum}"> sum</p>
+    <p type="text" th:text="${delivery.price}"> price</p>
+    <p type="text" th:text="${delivery.price} + ${delivery.sum}"> finalSum</p>
+    <input type="hidden" name="userId" th:value="${userId}">
+    <input name="address" th:placeholder="${delivery.address}">
+        <input type="submit" value="changeAddress">
+</form>
+
+<form method="get" th:action="@{/CurrentOrder}">
+    <input type="submit" value="Basket">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
+<form method="get" th:action="@{/Menu}">
+    <input type="submit" value="Menu">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
+<form method="post" th:action="@{/addOrder}">
+    <input type="submit" value="set Order">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
+</body>
+</html>

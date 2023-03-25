@@ -17,4 +17,6 @@ public class Delivery extends BaseModel {
         this.sum = sum;
         this.classId= Storage.getDeliveryMap().values().stream().mapToInt(delivery->delivery.classId).max().orElse(Integer.MIN_VALUE);
     }
+
+
 }

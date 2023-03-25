@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>OrderHistory</title>
 </head>
 <body>
-    <p>History</p>
+<table>
+    <tr th:each="order : ${listOrders}">
+        <form method="get" th:action="@{/Order}">
+            <td>
+                <p th:text="${order.classId}">orderId </p>
+                <p th:text="${order.getBasket().finalSum()+order.getDelivery().price}">orderId </p>
+                <input type="submit" value="open">
+                <!--                    <input type="submit" value="delete" th:formaction="@{/deleteProductMenu}">-->
+                <input type="hidden" name="orderId" th:value="${order.classId}">
+                <input type="hidden" name="userId" th:value="${userId}">
+            </td>
+        </form>
+    </tr>
+</table>
+
+<form method="get" th:action="@{/PersonalAccount}">
+    <input type="submit" value="PersonalAccount">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
+<form method="get" th:action="@{/Menu}">
+    <input type="submit" value="Menu">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
 </body>
 </html>

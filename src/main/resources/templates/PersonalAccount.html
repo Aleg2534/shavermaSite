@@ -18,5 +18,11 @@
     <p><input name="password" th:placeholder="${password}"></p>
     <p><input type="submit" value="Change private information"></p>
 </form>
+
+<form method="get" th:action="@{/OrderHistory}">
+    <input type="submit" value="OrderHistory">
+    <input type="hidden" name="userId" th:value="${userId}">
+</form>
+
 </body>
 </html>
