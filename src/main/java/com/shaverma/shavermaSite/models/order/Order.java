@@ -25,7 +25,7 @@ public class Order extends BaseModel {
 
     public Order(@NonNull int classId, Basket basket, double sum, Delivery delivery) {
         super(classId);
-        this.classId = Storage.getOrderMap().values().stream().mapToInt(order -> order.classId).max().orElse(Integer.MIN_VALUE);
+//        this.classId = Storage.getOrderMap().values().stream().mapToInt(order -> order.classId).max().orElse(Integer.MIN_VALUE);
         this.basket = basket;
         this.sum = sum;
         this.delivery = delivery;

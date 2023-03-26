@@ -14,11 +14,12 @@ public class ShavermaSiteApplication {
     public static void main(String[] args) throws IOException {
 
         SpringApplication.run(ShavermaSiteApplication.class, args);
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext();
-        context.register(AnnotationConfig.class);
-        context.refresh();
-        Storage storage = context.getBean(Storage.class);
-        context.close();
+//        AnnotationConfigApplicationContext context =
+//                new AnnotationConfigApplicationContext();
+//        context.register(AnnotationConfig.class);
+//        context.refresh();
+//        Storage storage = context.getBean(Storage.class);
+//        context.close();
+//    }
     }
 }

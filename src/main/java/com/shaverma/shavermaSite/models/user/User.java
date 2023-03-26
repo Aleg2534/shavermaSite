@@ -33,7 +33,7 @@ public class User extends BaseModel {
         this.currentOrder = currentOrder;
         this.orderHistory = orderHistory;
         this.role = role;
-        this.classId= Storage.getUserMap().values().stream().mapToInt(user->user.classId).max().orElse(Integer.MIN_VALUE);
+//        this.classId= Storage.getUserMap().values().stream().mapToInt(user->user.classId).max().orElse(Integer.MIN_VALUE);
     }
 
     @Override

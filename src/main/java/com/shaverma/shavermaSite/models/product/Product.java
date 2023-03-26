@@ -17,6 +17,6 @@ public class Product extends BaseModel {
         super(classId);
         this.productName = productName;
         this.price = price;
-        this.classId= Storage.getProductMap().values().stream().mapToInt(product->product.classId).max().orElse(Integer.MIN_VALUE);
+//        this.classId= Storage.getProductMap().values().stream().mapToInt(product->product.classId).max().orElse(Integer.MIN_VALUE);
     }
 }

@@ -3,8 +3,6 @@ package com.shaverma.shavermaSite.mvc;
 import com.shaverma.shavermaSite.models.order.Basket;
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
-import com.shaverma.shavermaSite.models.user.User;
-import com.shaverma.shavermaSite.utils.storage.ProductsLogic;
 import com.shaverma.shavermaSite.utils.storage.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +29,7 @@ public class CurrentOrderController {
         List<Product> listProducts = new ArrayList<>();
 //        List<Integer> listCount = new ArrayList<>();
         if (storage.getUser(Integer.parseInt(userId)).getCurrentOrder() == null) {
-            storage.getUser(Integer.parseInt(userId)).setCurrentOrder(new Order(Storage.newId(Storage.getOrderMap()),
+            storage.getUser(Integer.parseInt(userId)).setCurrentOrder(new Order(storage.newId(storage.getOrderMap()),
                     null, 0, null));
         }
         if (storage.getUser(Integer.parseInt(userId)).getCurrentOrder().getBasket() == null) {
@@ -58,7 +56,7 @@ public class CurrentOrderController {
     @PostMapping("/addProductCurrentOrder")
     public String addProductCurrentOrder(@RequestParam(name = "userId", required = false) String userId,
                                          @RequestParam(name = "productId", required = false) String productId, Model model) {
-        ProductsLogic.addProduct(userId, productId);
+        storage.addProduct(userId, productId);
         return getCurrentOrder(userId, model);
     }
 
@@ -68,7 +66,7 @@ public class CurrentOrderController {
         if (storage.getUser(Integer.parseInt(userId)).getCurrentOrder() == null) {
             return getCurrentOrder(userId, model);
         }
-        ProductsLogic.deleteProduct(userId, productId);
+        storage.deleteProduct(userId, productId);
         return getCurrentOrder(userId, model);
     }
 

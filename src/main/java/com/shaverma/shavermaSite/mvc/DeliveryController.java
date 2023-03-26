@@ -27,7 +27,7 @@ public class DeliveryController {
     public String getDelivery(@RequestParam(name = "userId", required = false) String userId, Model model) {
         User user = storage.getUser(Integer.parseInt(userId)).clone();
         if (user.getCurrentOrder().getDelivery() == null) {
-            user.getCurrentOrder().setDelivery(new Delivery(Storage.newId(Storage.getDeliveryMap()),
+            user.getCurrentOrder().setDelivery(new Delivery(storage.newId(storage.getDeliveryMap()),
                     "",0, 0));
         }
         user.getCurrentOrder().getDelivery().setPrice(333);
@@ -59,7 +59,7 @@ public class DeliveryController {
         storage.setDelivery(storage.getUser(Integer.parseInt(userId)).getCurrentOrder().getDelivery());
         user.setCurrentOrder(null);
         storage.setUser(Integer.parseInt(userId), user);
-        model.addAttribute("listProducts", Storage.getProductMap().values().stream().toList());
+        model.addAttribute("listProducts", storage.getProductMap().values().stream().toList());
         model.addAttribute("userId", userId);
         return "/Menu";
     }

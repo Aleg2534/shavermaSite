@@ -7,4 +7,5 @@
 {"classId":6,"address":"sadas","price":738.0,"sum":0.0019157088122605363}
 {"classId":7,"address":"sadas","price":861.0,"sum":0.002234993614303959}
 {"classId":8,"address":"sadas","price":984.0,"sum":0.002554278416347382}
-{"classId":9,"address":"","price":333.0,"sum":861.0}
+{"classId":9,"address":"","price":333.0,"sum":984.0}
+{"classId":10,"address":"","price":333.0,"sum":6642.0}

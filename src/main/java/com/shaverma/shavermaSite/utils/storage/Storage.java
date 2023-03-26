@@ -2,6 +2,7 @@ package com.shaverma.shavermaSite.utils.storage;
 
 import com.shaverma.shavermaSite.models.delivery.Delivery;
 import com.shaverma.shavermaSite.models.enums.Roles;
+import com.shaverma.shavermaSite.models.order.Basket;
 import com.shaverma.shavermaSite.models.order.Order;
 import com.shaverma.shavermaSite.models.product.Product;
 import com.shaverma.shavermaSite.models.user.User;
@@ -20,35 +21,71 @@ import java.util.stream.Collectors;
 @ComponentScan(basePackages = "java.util.HashMap")
 @Getter
 public class Storage {
-    private static Map<Integer, Delivery> deliveryMap;
-    private static Map<Integer, Order> orderMap;
-    private static Map<Integer, Product> productMap;
-    private static Map<Integer, User> userMap;
+    private Map<Integer, Delivery> deliveryMap;
+    private Map<Integer, Order> orderMap;
+    private Map<Integer, Product> productMap;
+    private Map<Integer, User> userMap;
 
-    public static Map<Integer, Delivery> getDeliveryMap() {
+    private ProductsLogic productsLogic;
+
+    private class ProductsLogic {
+        public void addProduct(String userId, String productId) {
+            User user = userMap.get(Integer.parseInt(userId)).clone();
+            if (user.getCurrentOrder() == null) {
+                user.setCurrentOrder(new Order(newId(orderMap),null,0,null));
+            }
+            if (user.getCurrentOrder().getBasket()==null)
+            {
+                user.getCurrentOrder().setBasket(new Basket());
+                user.getCurrentOrder().getBasket().setBasket(new HashMap<Integer,Integer>());
+            }
+            if (user.getCurrentOrder().getBasket().getBasket()==null)
+            {
+                user.getCurrentOrder().getBasket().setBasket(new HashMap<Integer,Integer>());
+            }
+            user.getCurrentOrder().getBasket().getBasket().put(Integer.parseInt(productId),
+                    user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) == null ? 1 :
+                            user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) + 1);
+            userMap.put(Integer.parseInt(userId), user);
+        }
+
+        public void deleteProduct(String userId, String productId) {
+            User user = userMap.get(Integer.parseInt(userId)).clone();
+            if (user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) > 1) {
+                user.getCurrentOrder().getBasket().getBasket().put(Integer.parseInt(productId),
+                        user.getCurrentOrder().getBasket().getBasket().get(Integer.parseInt(productId)) - 1);
+            } else {
+                user.getCurrentOrder().getBasket().getBasket().remove(Integer.parseInt(productId));
+            }
+            userMap.put(Integer.parseInt(userId), user);
+        }
+    }
+
+
+    public Map<Integer, Delivery> getDeliveryMap() {
         return deliveryMap;
     }
 
-    public static Map<Integer, Order> getOrderMap() {
+    public Map<Integer, Order> getOrderMap() {
         return orderMap;
     }
 
-    public static Map<Integer, Product> getProductMap() {
+    public Map<Integer, Product> getProductMap() {
         return productMap;
     }
 
-    public static Map<Integer, User> getUserMap() {
+    public Map<Integer, User> getUserMap() {
         return userMap;
     }
 
-    @Autowired
-    public Storage(Map<Integer, Delivery> deliveryMap, Map<Integer, Order> orderMap,
-                   Map<Integer, Product> productMap, Map<Integer, User> userMap) {
-        Storage.deliveryMap = deliveryMap;
-        Storage.orderMap = orderMap;
-        Storage.productMap = productMap;
-        Storage.userMap = userMap;
-    }
+//    @Autowired
+//    public Storage(Map<Integer, Delivery> deliveryMap, Map<Integer, Order> orderMap,
+//                   Map<Integer, Product> productMap, Map<Integer, User> userMap) {
+//        Storage.deliveryMap = deliveryMap;
+//        Storage.orderMap = orderMap;
+//        Storage.productMap = productMap;
+//        Storage.userMap = userMap;
+//    }
 
     @PostConstruct
     public void init() throws IOException {
@@ -56,6 +93,7 @@ public class Storage {
         orderMap = (Map<Integer, Order>) ConverterJson.readJson(Consts.ORDER_PATH);
         productMap = (Map<Integer, Product>) ConverterJson.readJson(Consts.PRODUCT_PATH);
         userMap = (Map<Integer, User>) ConverterJson.readJson(Consts.USER_PATH);
+        productsLogic = new ProductsLogic();
     }
 
     @PreDestroy
@@ -103,14 +141,14 @@ public class Storage {
     }
 
     public boolean checkEmailUser(String email) {
-        return Storage.userMap.values().stream().anyMatch(user ->
+        return userMap.values().stream().anyMatch(user ->
                 user.getEmailAddress().equals(email));
     }
 
     public User checkLoginAndPasswordUser(String email, String password) {
 //        return getUserMap().values().stream().anyMatch(user ->
 //                user.getEmailAddress().equals(email) && user.getPassword().equals(password));
-        return Storage.userMap.values().stream().filter(user ->
+        return userMap.values().stream().filter(user ->
                 user.getEmailAddress().equals(email) && user.getPassword().equals(password)).findFirst().orElse(null);
     }
 
@@ -120,9 +158,16 @@ public class Storage {
         return userId;
     }
 
-    public static  <T> int newId(Map<Integer, T> objectMap) {
+    public <T> int newId(Map<Integer, T> objectMap) {
         return (objectMap.keySet().size() > 0 ?
                 objectMap.keySet().stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax() : 0) + 1;
     }
 
+    public void addProduct(String userId, String productId) {
+        productsLogic.addProduct(userId, productId);
+    }
+
+    public void deleteProduct(String userId, String productId) {
+        productsLogic.deleteProduct(userId, productId);
+    }
 }
